@@ -8,13 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("goods")
 @Slf4j
 public class GoodsController {
 
-    final GoodsService goodsService;
+    private final GoodsService goodsService;
 
     @Autowired
     public GoodsController(GoodsService goodsService) {
@@ -27,9 +28,9 @@ public class GoodsController {
     }
 
     @GetMapping("/{id}")
-    public GoodsDTO getGoods(@PathVariable String id) {
+    public Optional<GoodsDTO> getGoods(@PathVariable Long id) {
         log.info("get goods detail by id: {}", id);
-        return null;
+        return goodsService.findGoodsById(id);
     }
 
     @PatchMapping(value = "/{id}", headers = "X-MST-COMMAND=changeStockQuantity")

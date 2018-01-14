@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class GoodsService {
 
-    final GoodsRepository goodsRepository;
+    private final GoodsRepository goodsRepository;
 
     @Autowired
     public GoodsService(GoodsRepository goodsRepository) {
@@ -22,5 +23,10 @@ public class GoodsService {
         return goodsRepository.findAll().stream()
                 .map(GoodsDTO::from)
                 .collect(Collectors.toList());
+    }
+
+    public Optional<GoodsDTO> findGoodsById(Long id) {
+        return goodsRepository.findById(id)
+                .map(GoodsDTO::from);
     }
 }
