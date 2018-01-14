@@ -1,7 +1,6 @@
 package com.thoughtworks.mstorderservice.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,6 +10,9 @@ import javax.persistence.Table;
 @Table(name = "goods")
 @Getter
 @Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Goods {
 
     @Id

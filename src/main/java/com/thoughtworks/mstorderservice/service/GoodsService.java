@@ -39,12 +39,18 @@ public class GoodsService {
         Goods goods = goodsRepository.findById(id)
                 .orElseThrow(() -> new GoodsNotFoundException(id));
 
-        int quantity = changeStockQuantityCommand.getQuantity();
-        if (changeStockQuantityCommand.getOperator() == MINUS) {
-            goods.setStockQuantity(goods.getStockQuantity() - quantity);
-        } else {
-            goods.setStockQuantity(goods.getStockQuantity() + quantity);
-        }
+        goods.setStockQuantity(calculateStockQuantity(goods.getStockQuantity(), changeStockQuantityCommand));
+
         return GoodsDTO.from(goodsRepository.save(goods));
+    }
+
+    Integer calculateStockQuantity(Integer originStockQuantity, ChangeStockQuantityCommand changeStockQuantityCommand){
+        int quantity = changeStockQuantityCommand.getQuantity();
+
+        if (changeStockQuantityCommand.getOperator() == MINUS) {
+            return originStockQuantity - quantity;
+        } else {
+            return originStockQuantity + quantity;
+        }
     }
 }
