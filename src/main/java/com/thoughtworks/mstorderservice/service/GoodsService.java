@@ -44,8 +44,12 @@ public class GoodsService {
         return GoodsDTO.from(goodsRepository.save(goods));
     }
 
-    Integer calculateStockQuantity(Integer originStockQuantity, ChangeStockQuantityCommand changeStockQuantityCommand){
+    Integer calculateStockQuantity(Integer originStockQuantity, ChangeStockQuantityCommand changeStockQuantityCommand) {
         int quantity = changeStockQuantityCommand.getQuantity();
+
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("Quantity must be positive");
+        }
 
         if (changeStockQuantityCommand.getOperator() == MINUS) {
             return originStockQuantity - quantity;

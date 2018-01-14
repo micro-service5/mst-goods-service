@@ -60,6 +60,15 @@ class GoodsServiceTest {
         assertEquals(5, result.intValue());
     }
 
+    @Test
+    void should_throw_IllegalArgumentException_when_quantity_is_negative(){
+        final int stockQuantity = 10;
+
+        assertThrows(IllegalArgumentException.class, () -> goodsService.calculateStockQuantity(
+                stockQuantity, generateChangeStockQuantityCommand(-1, PLUS))
+        );
+    }
+
     ChangeStockQuantityCommand generateChangeStockQuantityCommand(int quantity, StockQuantityOperator operator) {
         return new ChangeStockQuantityCommand(quantity, operator);
     }
