@@ -11,6 +11,7 @@ import org.mockito.Mock;
 
 import java.util.Optional;
 
+import static com.thoughtworks.mstorderservice.enums.StockQuantityOperator.MINUS;
 import static com.thoughtworks.mstorderservice.enums.StockQuantityOperator.PLUS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -47,6 +48,16 @@ class GoodsServiceTest {
                 stockQuantity, generateChangeStockQuantityCommand(5, PLUS));
 
         assertEquals(15, result.intValue());
+    }
+
+    @Test
+    void should_minus_stock_quantity_successfully() {
+        final int stockQuantity = 10;
+
+        Integer result = goodsService.calculateStockQuantity(
+                stockQuantity, generateChangeStockQuantityCommand(5, MINUS));
+
+        assertEquals(5, result.intValue());
     }
 
     ChangeStockQuantityCommand generateChangeStockQuantityCommand(int quantity, StockQuantityOperator operator) {
