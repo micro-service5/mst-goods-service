@@ -34,8 +34,8 @@ public class GoodsController {
     }
 
     @PatchMapping(value = "/{id}", headers = "X-MST-COMMAND=changeStockQuantity")
-    public GoodsDTO updateGoods(@PathVariable String id, @RequestBody ChangeStockQuantityCommand changeStockQuantityCommand) {
+    public GoodsDTO updateGoods(@PathVariable Long id, @RequestBody ChangeStockQuantityCommand changeStockQuantityCommand) {
         log.info("change goods [id = {}] stock quantity by command {}", id, changeStockQuantityCommand);
-        return null;
+        return goodsService.changeStockQuantity(id, changeStockQuantityCommand);
     }
 }
