@@ -9,7 +9,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @Disabled
-class MstOrderServiceApplicationTests {
+class MstGoodsServiceApplicationTests {
 
     @Test
     public void contextLoads() {

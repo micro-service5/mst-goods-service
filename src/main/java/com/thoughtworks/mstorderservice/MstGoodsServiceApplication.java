@@ -6,9 +6,9 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-public class MstOrderServiceApplication {
+public class MstGoodsServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MstOrderServiceApplication.class, args);
+        SpringApplication.run(MstGoodsServiceApplication.class, args);
     }
 }
