@@ -1,11 +1,13 @@
 package com.thoughtworks.mstorderservice.dto;
 
 import com.thoughtworks.mstorderservice.entity.Goods;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Builder
 public class GoodsDTO {
 
     private String id;
@@ -18,13 +20,14 @@ public class GoodsDTO {
 
     private Integer stockQuantity;
 
-    public static GoodsDTO from(Goods goods){
-        GoodsDTO goodsDTO = new GoodsDTO();
-        goodsDTO.id = String.valueOf(goods.getId());
-        goodsDTO.name = goods.getName();
-        goodsDTO.description = goods.getDescription();
-        goodsDTO.price = goods.getPrice();
-        goodsDTO.stockQuantity = goods.getStockQuantity();
+    public static GoodsDTO from(Goods goods) {
+        GoodsDTO goodsDTO = GoodsDTO.builder()
+                .id(String.valueOf(goods.getId()))
+                .name(goods.getName())
+                .description(goods.getDescription())
+                .price(goods.getPrice())
+                .stockQuantity(goods.getStockQuantity())
+                .build();
         return goodsDTO;
     }
 }
